@@ -38,3 +38,23 @@ func stringConcatWithBuilder(strs []string) string {
 
 	return b.String()
 }
+
+func smallSliceUsage() []int {
+	largeArray := make([]int, 10_000_000) // 10 million ints
+	smallSlice := largeArray[0:10]
+
+	for i := 0; i < 10; i++ {
+		smallSlice[i] = smallSlice[i] * 2
+	}
+	return smallSlice
+}
+
+func betterSliceUsage() []int {
+	largeArray := make([]int, 10_000_000) // 10 million ints
+	smallSliceCopy := append([]int{}, largeArray[0:10]...)
+
+	for i := 0; i < 10; i++ {
+		smallSliceCopy[i] = smallSliceCopy[i] * 2
+	}
+	return smallSliceCopy
+}
